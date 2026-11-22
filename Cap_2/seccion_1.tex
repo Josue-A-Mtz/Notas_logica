@@ -1,0 +1,53 @@
+\subsection{Modelos de t\'erminos}
+Sea $\lang := (\lambda, \mu, K)$ un lenguaje formal, definimos
+\[ \kappa_\lang = \max \{ \aleph_0, |I|, |J|, |K| \}. \]
+La cardinalidad del lenguaje $\lang$, mientras que el cardinal de una $\lang$-estructura es el cardinal del universo.
+\footnote{Si consideramos un lenguaje a la Ziegler $\kappa_\lang := \max \{ \lang, \aleph_0 \}$.}
+Tenemos que 
+\begin{align*}
+  |\mathrm{Tm} (\lang)| &= \max \{ \aleph_0, |J|, |K| \},\\
+  |\mathrm{Fml} (\lang)| &= \kappa_\lang,\\
+  |\mathrm{Sent} (\lang)| &= \kappa_\lang.
+\end{align*}
+Sea $\Sigma \subseteq \mathrm{Sent} (\lang)$ consistente, tenemos que la extensi\'on $\lang'$ de $\lang$ tiene el mismo cardinal.
+Trivialmente
+\[ \kappa_\lang \leq \kappa_{\lang'}. \]
+Luego, procedemos por inducci\'on, supongamos que 
+\[ \kappa_{\lang_n} \leq \kappa_\lang, \]
+de esto se sigue que 
+\[ \kappa_{\lang_n+1} \leq \max \{ \kappa_{\lang_n}, M_n \} \leq \kappa_{\lang_n} \leq \kappa_\lang.  \]
+Por lo tanto $\kappa_{\lang_n} \leq \kappa_\lang$ para todo $n \in \nn$.
+De esto se sigue que $\kappa_{\lang'} \leq \kappa_\lang$.
+Por lo tanto $|\mathrm{CT} / \approx| \leq \kappa_\lang$.
+\begin{theorem}
+  Sea $\Sigma \subseteq \mathrm{Sent} (\lang)$ tal que tiene un modelo de cardinal infinito y sea $\kappa$ un cardinal tal que $\kappa_\lang \leq \kappa$.
+  Existe un modelo de $\Sigma$ con cardinal $\kappa$. 
+\end{theorem}\\
+\emph{Demostraci\'on.}\\
+Definamos $\lang_\kappa$ como $I_\kappa := I, J_\kappa := J$ y $K_\kappa := K \cup \kappa$.
+\footnote{Viendo a $\kappa$ como ordinal.}
+Extendemos $\Sigma$ a $\Sigma_\kappa := \Sigma \cup \{ c_\nu \neq c_\mu \ | \ \nu < \mu < \kappa \}$. 
+
+Sea $\Pi$ un subconjunto finito de $\Sigma_\kappa$, como $\Sigma$ tiene un modelo infinito, este mismo modelo lo podemos extender a un modelo de $\Pi$. 
+Por compacidad, $\Sigma_\kappa$ es consistente.
+El modelo de t\'erminos
+\footnote{El usado en el teorema de completud de G\"odel}
+tiene cardinal menor o igual a $\kappa$ y como tiene $\kappa$ t\'erminos, su cardinal es $\kappa$. \qed
+\newpage
+\begin{proposition}
+  Sean $\mathfrak{A}$ y $\mathfrak{B}$ $\lang$-estructuras si $\mathfrak{B} \models \mathrm{Th} (\mathfrak{A})$, entonces $\mathfrak{A}$ y $\mathfrak{B}$ son esencialmente equivalentes.
+\end{proposition} \hfill \break
+\emph{Demostraci\'on.} \hfill \break
+Por hip\'otesis tenemos que para toda $\varphi \in \mathrm{Sent} (\lang)$, 
+\[ \mathfrak{A} \models \varphi \Longrightarrow \mathfrak{B} \models \varphi. \]
+Luego, supongamos que existe $\psi \in \mathrm{Sent} (\lang)$ tal $\mathfrak{A} \not\models \psi$, es decir, $\mathfrak{A} \models \neg \psi$.
+Por lo tanto $\mathfrak{B} \models \neg \psi$ y por definici\'on $\mathfrak{B} \not\models \psi$.
+Concluyendo que 
+\[ \mathfrak{A} \not \models \psi \Longrightarrow \mathfrak{B} \not\models \psi. \]
+Lo cual demuestra por contrapositiva la segunda implicaci\'on. \qed
+\begin{corollary}
+  Sea $\mathfrak{A}$ una $\lang$-estructura infinita y $\kappa \geq \kappa_\lang$ un cardinal, existe una $\lang$-estructura $\mathfrak{B}$ de cardinal $\kappa$ tal que es elementalmente equivalente a $\mathfrak{A}$.
+\end{corollary} \hfill \break
+\emph{Demostraci\'on.} \hfill \break
+Se sigue del teorema anterior cuando consideramos a $\Sigma = \mathrm{Th} (\mathfrak{A})$, tenemos que existe un modelo de $\mathrm{Th} (\mathfrak{A})$ de cardinal $\kappa$ y de la proposici\'on anterior llegamos a que es elementalmente equivalente a $\mathfrak{A}$. \qed
+
