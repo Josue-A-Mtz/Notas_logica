@@ -1,0 +1,193 @@
+\subsection{Lenguaje}
+\begin{definition}
+  Un $\lang$-t\'ermino es una secuencia de s\'imbolos construidos con constantes, funciones de $\lang$ y/o las variables $v_0, v_1, \dots$ con respecto a las siguientes reglas
+  \begin{enumerate}[(a)]
+  \item 
+    Toda variable $v_i$ y toda constante $c$ es un $\lang$-t\'ermino.
+  \item
+    Sea $f$ una funci\'on $n$-aria y $t_1, \dots, t_n$ $\lang$-t\'erminos, entonces $f t_1 \dots t_n \equiv f (t_1, \dots, t_n)$ es un $\lang$-t\'ermino.\\
+    El n\'umero de ocurrencias en de funciones en t\'erminos se le llama \emph{complejidad}.
+    Esto nos permitir\'a hacer inducci\'on sobre la complejidad de los t\'erminos y en consecuencia 
+    \footnote{Quiero pensar que se define de forma recursiva tal que las variables y constantes tienen complejidad $0$ y dados $\lang$-t\'erminos $t_1, \dots, t_n$ con complejidades $m_1, \dots, m_n$ y una funci\'on $n$-aria, la complejidad de $f(t_1, \dots, t_n)$ es $1 + m_1 + \dots m_n$.}
+  \end{enumerate}
+\end{definition}
+\begin{definition}
+  Sea $\mathfrak{A}$ una $\lang$-estructura y $\vec{a} := (a_1, a_2, \dots,) \in A^n$ se define la interpretaci\'on de un $\lang$-t\'ermino $t$ como
+  \begin{enumerate}
+  \item 
+    $v_i^{\mathfrak{A}} \left[\vec{a} \right] := a_i$.
+  \item
+    $c^{\mathfrak{A}} \left[ \vec{a} \right] := c^{\mathfrak{A}}$.
+  \item
+    $ft_1, \dots, t_n^{\mathfrak{A}} \left[ \vec{a} \right] := f^{\mathfrak{A}} (t^{\mathfrak{A}} \left[\vec{a}\right], \dots, t^{\mathfrak{A}} \left[ \vec{a} \right])$
+  \end{enumerate}
+\end{definition}
+\begin{lemma}
+  La interpretaci\'on $t^{\mathfrak{A}} [\vec{b}]$ depende de $b_i$ cuando $v_i$ ocurre
+  \footnote{Intuyo que el que una variable $v_i$ ocurra en un t\'ermino se define de manera recursiva tal que $t = v_i$ o $t = f t_1, \dots, t_m$ tal que hay un $t_j$ con la propiedad de que $v_i$ ocurre en $t_j$.}
+  en $t$.
+\end{lemma}\\
+\emph{Demostraci\'on.}\\
+Decir que la interpretaci\'on $t^{\mathfrak{A}} [\vec{b}]$ depende en $b_i$ significa que si hay un arreglo $\vec{b'} := (b_1, \dots, b'_i, \dots)$, se cumple que 
+\[ t^{\mathfrak{A}} [\vec{b}] \neq t^{\mathfrak{A}} [\vec{b'}] \Longrightarrow b_i \neq b'_i. \]
+Ya que el rec\'iproco es falso.\\
+Haciendo inducci\'on sobre la complejidad de $t$ iniciamos con $t = v_i$, se sigue que 
+\[ b_i = t^{\mathfrak{A}} [\vec{b}] \neq t^{\mathfrak{A}} [\vec{b'}] = b'_i. \]
+Luego, sigamos con el caso $t = f t_1, \dots, t_m$, sea $j \in \{ 1, \dots, m \}$ tal que $v_i$ ocurre en $t_j$. 
+\[ f^{\mathfrak{A}} (t^{\mathfrak{A}}_1 [\vec{b}], \dots, t^{\mathfrak{A}}_, [\vec{b}]) = f t_1, \dots, t_m^{\mathfrak{A}} [\vec{b}] \neq f t_1, \dots, t_m^{\mathfrak{A}} [\vec{b'}] = f^{\mathfrak{A}} (t^{\mathfrak{A}}_1 [\vec{b'}], \dots, t^{\mathfrak{A}}_, [\vec{b'}]) \]
+Llegamos a que 
+\[ (t^{\mathfrak{A}}_1 [\vec{b}], \dots, t^{\mathfrak{A}}_, [\vec{b}]) \neq (t^{\mathfrak{A}}_1 [\vec{b'}], \dots, t^{\mathfrak{A}}_, [\vec{b'}]) \]
+Se sigue que $t_j^{\mathfrak{A}} [\vec{b}] \neq t_j^{\mathfrak{A}} [\vec{b'}]$.
+Por lo tanto $b_i \neq b_i'$. \qed
+\newpage
+\begin{definition}
+  Sean $x_1, \dots, x_n$ variables distintas a pares si no hay ocurrencia de otras variables en un t\'ermino $t$, usamos la notaci\'on
+  \[ t = t(x_1, \dots, x_n). \]
+  Luego, dado $(a_1, \dots, a_n) \in A^n$ asignado para cada variable $x_i$, definimos
+  \[ t^{\mathfrak{A}} \left[ a_1, \dots, a_n \right] = t^{\mathfrak{A}} \left[ \vec{b} \right]. \]
+  A su vez, si $t_1, \dots, t_n$ son t\'erminos podemos sustituir los $x_i$ con lo cual obtenemos
+  \[ t (t_1, \dots, t_n). \]
+\end{definition}
+\begin{lemma}
+  \[ t (t_1, \dots, t_n)^{\mathfrak{A}} [ \vec{b} ] = t^{\mathfrak{A}} \left[ t_1^{\mathfrak{A}} [ \vec{b} ], \dots, t_n^{\mathfrak{A}} [ \vec{b} ] \right]. \]
+\end{lemma} \hfill \break
+\emph{Demostraci\'on.} \hfill \break
+Haciendo inducci\'on sobre la complejidad de $t$.
+Si $t = v_i$, entonces 
+\[ t(t_1)^{\mathfrak{A}} [\vec{b}] = t_1^{\mathfrak{A}} [\vec{b}]. \]
+Si $t = c$, se cumple que
+\[ t (t_1, \dots, t_m)^{\mathfrak{A}} [\vec{b}] = c^{\mathfrak{A}}. \]
+Luego, si $t = f s_1 , \dots, s_m$ tenemos que 
+\begin{align*}
+t(s_1, \dots, s_n)^{\mathfrak{A}} [\vec{b}] &= f (s_1 (t_1, \dots, t_n), \dots, s_m (t_1, \dots, t_n))^{\mathfrak{A}} [\vec{b}]\\
+  &= f^{\mathfrak{A}} (s_1 (t_1, \dots, t_n)^{\mathfrak{A}} [\vec{b}], \dots, s_m (t_1, \dots, t_n)^{\mathfrak{A}} [\vec{b}])\\
+  &= f^{\mathfrak{A}} \left(s_1^{\mathfrak{A}} \left[ t_1^{\mathfrak{A}} [\vec{b}], \dots, t_n^{\mathfrak{A}} [\vec{b}] \right], \dots, s_m^{\mathfrak{A}} \left[ t_1^{\mathfrak{A}} [\vec{b}], \dots, t_n^{\mathfrak{A}}[\vec{b} ]\right] \right)\\
+  &= f s_1, \dots, s_m^{\mathfrak{A}} \left[ t_1^{\mathfrak{A}} [\vec{b}], \dots, t_n^{\mathfrak{A}} [\vec{b}] \right].
+\end{align*} \qed
+\newpage
+\begin{lemma}
+  Sea $h : \mathfrak{A} \to \mathfrak{B}$ un homomorfismo de $\lang$-estructuras y $t (x_1, \dots, x_n)$ un $\lang$-t\'ermino. 
+  Para $(a_1, \dots, a_n) \in A^n$ se cumple lo siguiente
+  \[ h(t^{\mathfrak{A}} [a_1, \dots, a_n]) = t^{\mathfrak{B}} [h(a_1), \dots, h(a_n)]. \]
+\end{lemma}
+\emph{Demostraci\'on.}\\
+Haciendo inducci\'on sobre la complejidad de $t$.\\
+Supongamos que $t = c$, se sigue que 
+\[ h (t^{\mathfrak{A}} [a_1, \dots, a_n]) = h (c^{\mathfrak{A}}) = c^{\mathfrak{B}} = t^{\mathfrak{B}} [h(a_1), \dots, h(a_n)]. \]
+Supongamos que $t = v_i$
+\[ h(t^{\mathfrak{A}} [a_1, \dots, a_n]) = h(a_i) = t^{\mathfrak{B}} [h(a_1), \dots, h(a_n)]. \]
+Supongamos que $t = f t_1 ,\dots, t_m$ 
+\begin{align*}
+ h(f t_1, \dots, t_m^{\mathfrak{A}} [a_1, \dots, a_n]) &= h (f^{\mathfrak{A}} (t_1^{\mathfrak{A}} [a_1, \dots, a_n], \dots, t_m^{\mathfrak{A}} [a_1, \dots, a_n])) \\
+  &= f^{\mathfrak{B}} (h(t_1^{\mathfrak{A}} [a_1, \dots, a_n] ), \dots,  h(t_n^{\mathfrak{A}} [a_1, \dots, a_n] ))\\
+  &= f^{\mathfrak{B}} (t_1^{\mathfrak{B}} [h(a_1), \dots, h(a_n)] , \dots,  t_n^{\mathfrak{B}} [h(a_1), \dots, (a_n)] )\\
+  &= f t_1, \dots, t_m^{\mathfrak{B}} [h(a_1), \dots, h(a_n)].
+\end{align*} \qed
+\begin{lemma}
+  Sea $S$ un subconjunto de una $\lang$-estructura $\mathfrak{A}$. Se cumple que 
+  \[ \left< S \right>^{\mathfrak{A}} = \{ t^{\mathfrak{A}} [s_1, \dots, s_n] \ | \ t(x_1, \dots, x_n) \ \lang\text{t\'ermino}, s_1, \dots, s_n \in S \}. \]
+\end{lemma}\\
+\emph{Demostraci\'on.}\\
+Supongamos que $S$ es no vac\'io o que $\lang$ tiene constantes ya que si no ocurre ninguna de las dos, el universo es vac\'io.\\
+Tenemos que $\left< S \right>^{\mathfrak{A}}$ contiene a todas las constantes y a todos los elementos de $S$.
+Luego, tenemos por definici\'on que las funciones son cerradas bajo $\left< S \right>^{\mathfrak{A}}$.\\
+Sea $\mathfrak{A}' \subseteq \mathfrak{A}$ tal que $S \subseteq \mathfrak{A}'$, sea $t = t(x_1, \dots, x_n)$ un t\'ermino, se sigue que\\
+Si $t = c$
+\[ c^{\mathfrak{A}} [s_1, \dots, s_n] = c^{\mathfrak{A}} \in \mathfrak{A}'. \]
+Supongamos que $t = v_i$
+\[ v_i^{\mathfrak{A}} [s_1, \dots, s_n] = s_i \in \mathfrak{A}'. \]
+Supongamos que $t = f t_1, \dots, t_m$.
+\[ f t_1, \dots, t_m^{\mathfrak{A}} [s_1, \dots, s_n] = f^{\mathfrak{A}} (t_1^{\mathfrak{A}} [s_1, \dots, s_n], \dots, t_1^{\mathfrak{A}} [s_1, \dots, s_n]) \in \mathfrak{A}'. \] \qed \newline
+Como consecuencia tenemos que
+\[ \left< \void \right>^{\mathfrak{A}} = \{ c^{\mathfrak{A}} \ | \ c \text{ es constante} \}. \]
+\newpage
+\begin{corollary}
+  \[ \left| \left< S \right>^{\mathfrak{A}} \right| \leq \max \{ |S|, |\lang|, \aleph_0 \}. \]
+\end{corollary}
+\begin{definition}
+  Sea $\lang$ un lenguaje, definimos las $\lang$-formulas como
+  \begin{enumerate}[(a)]
+  \item 
+    $t \doteq s$ donde $t$ y $s$ son $\lang$-t\'erminos.
+  \item
+    $R t_1, \dots, t_n$ donde $R$ es una relaci\'on $n$-aria y $t_1, \dots, t_n$ son $\lang$-t\'erminos.
+  \item
+    $\neg \psi$ donde $\psi$ es una $\lang$-f\'ormula.
+  \item
+    $\varphi \land \psi$ donde $\varphi$ y $\psi$ son $\lang$-f\'ormulas.
+  \item
+    $\varphi \lor \psi$ donde $\varphi$ y $\psi$ son $\lang$-f\'ormulas.
+  \item
+    $\varphi \to \psi$ donde $\varphi$ y $\psi$ son $\lang$-f\'ormulas.
+  \item
+    $\exists v_i, \varphi$ donde $\varphi$ es una $\lang$-f\'ormula.
+  \item
+    $\forall v_i, \varphi$ donde $\varphi$ es una $\lang$-f\'ormula.
+    Las formulas de la forma (a) y (b) se denominan como f\'ormulas at\'omicas.
+  \end{enumerate}
+  Definimos la complejidad de una f\'ormula como $0$ cuando son f\'ormulas at\'omicas.
+  Si $\varphi$ tiene complejidad $n$; $\neg \varphi$, $\exists v_i, \varphi$ y $\forall v_i, \varphi$ tienen complejidad $n+1$.
+  \footnote{Esto nos permite hacer inducci\'on sobre la complejidad de una f\'ormula, similar a la inducci\'on sobre la complejidad de los t\'erminos.}
+  Si $\psi$ tiene complejidad $m$; $\varphi \land \psi$, $\varphi \lor \psi$ y $\varphi \to \psi$ tiene complejidad $n+m+1$.
+\end{definition}
+\begin{definition}
+  Sea $\mathfrak{A}$ una $\lang$-estructura, sea $\varphi$ $\lang$-f\'ormula y $\vec{b} : \nn \backslash \{ 0 \} \to A$, definimos la relaci\'on
+  \[ \mathfrak{A} \models \varphi [\vec{b}]. \]
+  \begin{align*}
+    \mathfrak{A} \models t \doteq s [\vec{b}] &\iff t^{\mathfrak{A}} [\vec{b}] = s^{\mathfrak{A}} [\vec{b}]\\
+    \mathfrak{A} \models R t_1, \dots, t_n &\iff R^{\mathfrak{A}} \left( t_1^{\mathfrak{A}} [\vec{b}], \dots, t_n^{\mathfrak{A}} [\vec{b}] \right)\\
+    \mathfrak{A} \models \neg \psi_1 [\vec{b}] &\iff \mathfrak{A} \not\models \psi_1 [\vec{b}]\\
+    \mathfrak{A} \models \psi_1 \land \psi_2 [\vec{b}] &\iff \mathfrak{A} \models \psi_1 [\vec{b}] \quad \text{y} \quad \mathfrak{A} \models \psi_2 [\vec{b}]\\
+    \mathfrak{A} \models \psi_1 \lor \psi_2 [\vec{b}] &\iff \mathfrak{A} \models \psi_1 [\vec{b}] \quad \text{\'o} \quad \mathfrak{A} \models \psi_2 [\vec{b}]\\
+    \mathfrak{A} \models \psi_1 \to \psi_2 [\vec{b}] &\iff \text{De } \mathfrak{A} \models \psi_1 [\vec{b}] \text{ se sigue } \mathfrak{A} \models \psi_2 [\vec{b}]\\
+    \mathfrak{A} \models \exists v_i, \psi_1 &\iff \text{Existe } a \in A \text{ tal que } \psi_1 \left[   \vec{b} \ \frac{a}{x}\right]\\
+    \mathfrak{A} \models \forall v_i, \psi_1 &\iff \text{Para todo } a \in A \text{ se cumple que } \mathfrak{A} \models \psi_1 \left[ \vec{b} \ \frac{a}{v_i} \right]
+  \end{align*}
+  Donde 
+  \[
+    \left( \vec{b} \ \frac{a}{v_i} \right) (n) :=
+    \begin{cases}
+      a &\text{ si } n = i,\\
+      \vec{b} \ (n) &\text{ si } n \neq i.
+    \end{cases}
+  \]
+  Si $\mathfrak{A} \models \varphi [\vec{b}]$ se dice que $\vec{b}$ satisface a $\varphi$ en $\mathfrak{A}$.
+\end{definition}
+\newpage
+\begin{definition}
+  Una variable $v_i$ es libre en una f\'ormula $\varphi$ dada la siguiente definici\'on recursiva
+  \begin{align*}
+    v_i \text{ es libre en } t_1 \doteq t_2 &\iff v_i \text{ ocurre en } t_1 \text{ \'o en } t_2\\
+    v_i \text{ es libre en } Rt_1, \dots, t_n &\iff v_i \text{ ocurre en alg\'un } t_i\\
+    v_i \text{ es libre en } \neg \psi &\iff v_i \text{ es libre en } \psi\\
+    v_i \text{ es libre en } \psi_1 \land \psi_2 &\iff v_i \text{ es libre en } \psi_1 \text{ o en } \psi_2\\
+    v_i \text{ es libre en } \psi_1 \lor \psi_2 &\iff v_i \text{ es libre en } \psi_1 \text{ o en } \psi_2\\
+    v_i \text{ es libre en } \psi_1 \to \psi_2 &\iff v_i \text{ es libre en } \psi_1 \text{ o en } \psi_2\\
+    v_i \text{ es libre en } \forall v_j, \psi &\iff v_i \text{ es libre en } \psi \text{ e } i \neq j\\
+    v_i \text{ es libre en } \exists v_j, \psi &\iff v_i \text{ es libre en } \psi \text{ e } i \neq j.
+  \end{align*}
+\end{definition}
+\begin{lemma}
+  Supongamos que $\vec{b}$ y $\vec{c}$ coinciden en todas las variables libres en $\varphi$.
+  Se cumple que
+  \[ \mathfrak{A} \models \varphi [\vec{b}] \iff \mathfrak{A} \models \varphi [\vec{c}]. \]
+\end{lemma}
+\emph{Demostraci\'on.}\\
+Si $\varphi = t_1 \doteq t_2$; se cumple que $t_1^{\mathfrak{A}} [\vec{b}] = t_1^{\mathfrak{A}} [\vec{c}]$ y $t_2^{\mathfrak{A}} [\vec{b}] = t_2^{\mathfrak{A}} [\vec{c}]$.\\
+Si $\varphi = R t_1, \dots, t_n$; tenemos que 
+\[ t_i^{\mathfrak{A}} [\vec{b}] = t_i^{\mathfrak{A}} [\vec{c}], \ \forall i \in \{ 1, \dots, n \}. \]
+Por lo tanto 
+\[ R^{\mathfrak{A}} (t_1^{\mathfrak{A}} [\vec{b}], \dots t_n^{\mathfrak{A}} [\vec{b}]) \iff R^{\mathfrak{A}} (t_1^{\mathfrak{A}} [\vec{c}], \dots t_n^{\mathfrak{A}} [\vec{c}]). \]
+Las dem\'as formas de una $\lang$-f\'ormula se prueban haciendo inducci\'on fuerte sobre la complejidad de las f\'ormulas.
+\begin{definition}
+  Sea $\varphi$ una f\'ormula, si $\varphi$ no tiene variables libres se le llama enunciado o variable cerrada.
+\end{definition}
+\begin{definition}
+  Sea $\varphi$ una f\'ormula, tenemos que 
+  \[ \forall v_0, \dots, v_n, \varphi \]
+  donde $n$ es el m\'aximo de variables libres en $\varphi$. 
+  La llamamos cerradura universal y la denotamos por
+  \[ \forall \varphi \]
+\end{definition}
+\newpage
+

@@ -1,0 +1,43 @@
+\subsection{Axiomatizaci\'on de teor\'ias matem\'aticas}
+\begin{definition}
+  Sea $\lang$ un lenguaje y $\mathscr{M}$ una clase no vac\'ia de $\lang$-estructuras.
+  \footnote{Supongo que se refiere a una f\'ormula en ZF con variable en la categor\'ia de las $\lang$-estructuras}
+  Definimos la $\lang$-teor\'ia de $\mathscr{M}$ como el conjunto
+  \[ \mathrm{\mathscr{M}} := \{ \alpha \in \mathrm{Sent} (\lang) \ | \ \mathfrak{A} \models \alpha, \ \text{ para todo } \ \mathfrak{A} \in \mathscr{M} \}. \]
+  Notamos que $\mathrm{Th} (\mathscr{M})$ es consistente por el teorema de la correctud y para todo $\alpha \in \mathrm{Sent} (\lang)$ tal que $\Sigma \vdash \alpha$ se sigue que $\alpha \in \Sigma$, de nuevo, por el teorema de la correctud.  
+  A esta \'ultima propiedad le llamaremos \emph{cerradura bajo deducci\'on}. \hfill \break
+  En general, le llamamos $\lang$-teor\'ia $T \subseteq \mathrm{Sent} (\lang)$ cuando $T$ es consistente y cerrado bajo deducci\'on.
+  Y definimos
+  \[ \mathscr{M}_T := \{ \mathfrak{A} \ | \ \mathfrak{A} \text{ es una } \lang \text{-estructura y } \mathfrak{A} \models T \}. \]
+  Trivialmente se cumple que $T \subseteq \mathrm{Th} (\mathscr{M})$.
+  Sea $\alpha \in \mathscr{M}$, tenemos que $\mathfrak{A} \models \alpha$ para cualquier modelo $\mathfrak{A}$ de $T$.
+  Por el teorema de completud de G\"odel, $T \vdash \alpha$, es decir, $\alpha \in T$.
+\end{definition}
+\begin{definition}
+  Sea $T$ una $\lang$-teor\'ia. 
+  Decimos que un conjunto $\Sigma \subseteq \mathrm{Sent} (\lang)$ es un sistema axiom\'atico de $T$ si 
+  \[ T = \{ \alpha \in \mathrm{Sent} (\lang) \ | \ \Sigma \vdash \alpha \}. \]
+  Si solo contamos con un conjunto $\Sigma \subseteq \mathrm{Sent} (\lang)$, 
+  \[ \mathrm{Ded} (\Sigma) := \{ \alpha \in \mathrm{Sent} (\lang) \ | \ \Sigma \vdash \alpha \}. \]
+  Notamos que $\mathrm{Ded} (\Sigma)$ es cerrada bajo deducciones, sea $\alpha_1, \dots, \alpha_n \in \mathrm{Ded} (\Sigma)$ y $\alpha \in \mathrm{Sent}(\lang)$ tal que 
+  \[ \{ \alpha_1, \dots, \alpha_n\} \vdash \alpha, \]
+  se sigue que hay $n$ demostraciones para cada $\alpha_k$ con $k \in \{ 1, \dots, n \}$.
+  Por lo tanto podemos \emph{juntar} las demostraciones para que $\Sigma \vdash \alpha$.
+\end{definition}
+\begin{definition}
+  Sea $\Sigma \subseteq \mathrm{Sent} (\lang)$, $\Sigma$ es completa cuando para todo $\alpha \in \mathrm{Sent} (\lang)$
+  \[ \Sigma \vdash \alpha \quad \text{o} \quad \Sigma \vdash \neg \alpha. \]
+\end{definition}
+\begin{proposition}
+  Sea $\mathfrak{A}$ una $\lang$-estructura y $T := \mathrm{Th} (\mathfrak{A})$.
+  $T$ es una $\lang$-teor\'ia completa completa.
+\end{proposition} \hfill \break
+\emph{Demostraci\'on.} \hfill \break
+Por definici\'on, tenemos que para $\alpha \in \mathrm{Sent} (\lang)$, 
+\[ \mathfrak{A} \models \alpha \quad \text{o} \quad \mathfrak{A} \not\models \alpha \iff \mathfrak{A} \models \neg \alpha. \] \qed
+\begin{lemma}
+  Sean $T_1$ y $T_2$ $\lang$-teor\'ias completas. Si $T_1 \subseteq T_2$, entonces $T_1 = T_2$.
+\end{lemma} \hfill \break
+\emph{Demostraci\'on.} \hfill \break
+Sea $\alpha \in T_2$, si $\alpha \notin T_1$ entonces $\neg \alpha \in T_1 \subseteq T_2$ lo cual es una contradicci\'on. \qed
+\newpage
