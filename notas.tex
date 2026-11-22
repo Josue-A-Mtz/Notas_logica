@@ -1,0 +1,34 @@
+\input{./format.tex}
+\input{./macros.tex}
+
+\usepackage{epigraph} 
+
+\usepackage[scr=rsfs]{mathalpha}
+\usepackage{proof}
+\usepackage{amsmath,amssymb,amsthm,textcomp}
+\newcommand{\Astruct}{\mathfrak{A}}
+\newcommand{\Bstruct}{\mathfrak{B}}
+
+\begin{document}
+\renewcommand*\contentsname{\'Indice}
+\newcommand{\lang}{\mathcal{L}}
+\input{./info.tex}
+\newpage
+\section{Fundamentos} 
+\input{./Cap_1/seccion_1.tex}
+\input{./Cap_1/seccion_2.tex}
+\input{./Cap_1/seccion_3.tex}
+\input{./Cap_1/seccion_4.tex}
+\input{./Cap_1/seccion_5.tex}
+\input{./Cap_1/seccion_6.tex}
+\section{Construcci\'on de modelos}
+\begin{definition}
+  Sea $\lang$ un lenguaje y $\mathfrak{A}$ y $\mathfrak{B}$ $\lang$-estructuras. 
+  Decimos que $\mathfrak{A}$ y $\mathfrak{B}$ son esencialmente equivalentes cuando para toda $\varphi \in \mathrm{Sent} (\lang)$ se cumple que 
+  \[ \mathfrak{A} \models \varphi  \iff \mathfrak{B} \models \varphi. \]
+  Lo cual lo denotamos por $\mathfrak{A} \equiv \mathfrak{B}$.
+\end{definition}
+\input{./Cap_2/seccion_1.tex}
+\input{./Cap_2/seccion_2.tex}
+\input{./Cap_2/seccion_3.tex}
+\end{document}

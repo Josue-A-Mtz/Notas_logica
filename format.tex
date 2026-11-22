@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english,activeacute]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb,times}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{pifont}
+\usepackage{bbm}
+\usepackage{multicol}
+\usepackage{appendix}
+\usepackage{tikz-cd}
+\usepackage{mathrsfs}
+\usepackage[sort&compress]{natbib}
+\bibliographystyle{plainnat}
+\def\theequation{\thesection.\arabic{equation}}
+
+\textwidth=6.5in
+\textheight=9.5in
+\topmargin=-.75in
+\topskip=-4pt
+\evensidemargin=-2pt
+\oddsidemargin=-1pt
+\parindent 0em
+\parskip 1ex
+
+\newcounter{definition}[section]
+\newenvironment{definition}[1][]{\refstepcounter{definition}\par\medskip
+   \noindent \textbf{Definici\'on~\thesubsection.\thedefinition.} \rmfamily}{\medskip}
+
+\newcounter{proposition}[section]
+\newenvironment{proposition}[1][]{\refstepcounter{proposition}\par\medskip
+   \noindent \textbf{Proposici\'on~\thesubsection.\theproposition. #1} \rmfamily}{\medskip}
+
+\newcounter{lemma}[section]
+\newenvironment{lemma}[1][]{\refstepcounter{lemma}\par\medskip
+   \noindent \textbf{Lema~\thesubsection.\thelemma. #1} \rmfamily}{\medskip}
+
+\newcounter{corollary}[section]
+\newenvironment{corollary}[1][]{\refstepcounter{corollary}\par\medskip
+   \noindent \textbf{Corolario~\thesubsection.\thecorollary. #1} \rmfamily}{\medskip}
+
+\newcounter{theorem}[section]
+\newenvironment{theorem}[1][]{\refstepcounter{theorem}\par\medskip
+   \noindent \textbf{Teorema~\thesubsection.\thetheorem. #1} \rmfamily}{\medskip}
+
+\newcounter{example}[section]
+\newenvironment{example}[1][]{\refstepcounter{example}\par\medskip
+   \noindent \textbf{Ejemplo~\thesubsection.\theexample. #1} \rmfamily}{\medskip}
+
+\newcounter{exercise}[section]
+\newenvironment{exercise}[1][]{\refstepcounter{example}\par\medskip
+   \noindent \textbf{Ejercicio~\thesubsection.\theexercise. #1} \rmfamily}{\medskip}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+  }
+
+
