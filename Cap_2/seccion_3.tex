@@ -1,0 +1,128 @@
+\subsection{Subestructuras}
+\begin{definition}
+  Sean $\mathfrak{A}$ y $\mathfrak{B}$ $\lang$-estructuras, decimos que $\mathfrak{B}$ es una subestructura de $\mathfrak{A}$ cuando $|\mathfrak{B}| \subseteq \mathfrak{A}$ y la funci\'on inclusi\'on es un encaje. \hfill \break
+  Equivalentemente, un subconjunto $|\mathfrak{B}|$ de $|\mathfrak{A}|$ es subestructura de $\mathfrak{A}$ cuando todas las interpretaciones de constantes est\'an en $|\mathfrak{B}|$ y las interpretaciones de funciones son cerradas bajo $|\mathfrak{B}|$.
+\end{definition}
+\begin{definition}
+  Sean $\mathfrak{A}$ una $\lang$-estructura y $\mathfrak{B}$ una subestructura de esta.
+  Decimos que $\mathfrak{B}$ es una subestructura elemental cuando para toda $\lang$-f\'ormula $\varphi$ y toda evaluaci\'on $h$ sobre $\mathfrak{B}$, 
+  \[ \mathfrak{B} \models \varphi [h] \iff \mathfrak{A} \models \varphi [h]. \]
+  Si $\mathfrak{B}$ es una subestructura elemental de $\mathfrak{A}$ lo denotamos como $\mathfrak{B} \preceq \mathfrak{A}$, evidentemente $\mathfrak{B} \preceq \mathfrak{A}$ implica $\mathfrak{A} \equiv \mathfrak{B}$.
+\end{definition}
+\begin{lemma}
+  Sea $\mathfrak{B}$ una subestructura de $\mathfrak{A}$.
+  Si para todo conjunto finito de elementos $b_1, \dots, b_n \in |\mathfrak{B}|$ y todo $a \in |\mathfrak{A}|$ existe un automorfismo $\tau$ de $\mathfrak{A}$ tal que $\tau(b_i) = b_i$ para todo $i \in \{ 1, \dots, n \}$ y $\tau(a) \in |\mathfrak{B}|$, entonces $\mathfrak{B}$ es una subestructura elemental de $\mathfrak{A}$. 
+\end{lemma} \hfill \break
+\emph{Demostraci\'on.} \hfill \break
+Sea $\varphi$ una $\lang$-f\'ormula.
+Hagamos inducci\'on sobre la complejidad de $\varphi$. \hfill \break
+Replicamos la demostraci\'on del teorema 2.2.2 hasta el caso $\varphi = \forall x \psi$ ya que antes de este, solo se usan las propiedades de encaje entre $\lang$-estructuras. \hfill \break
+Demostremos la equivalencia
+\[ \mathfrak{B} \models \forall x \psi [h] \iff \mathfrak{A} \models \forall x \psi [h]. \]
+
+Supongamos que $\mathfrak{A} \models \forall x \psi [h]$, es decir, para todo $a \in |\mathfrak{A}|$ se cumple
+\[ \mathfrak{A} \models \psi \left[ h \binom{x}{a} \right], \]
+de esto se sigue que para todo $b \in |\mathfrak{B}|$ se cumple
+\[ \mathfrak{A} \models \psi \left[ h \binom{x}{a} \right]. \]
+Debido a que $h \binom{x}{b}$ es una asignaci\'on en $\mathfrak{B}$, por la hip\'otesis de inducci\'on llegamos a que para todo $b \in |\mathfrak{B}|$,
+\[ \mathfrak{B} \models \psi \left[ h \binom{x}{b} \right]. \]
+En base a los anterior llegamos a 
+\[ \mathfrak{B} \models \forall x \psi. \]
+\newpage
+Si $\mathfrak{A} \not\models \forall x \psi [h]$.
+Entonces para existe $a \in |\mathfrak{A}|$ tal que
+\[ \mathfrak{A} \models \psi \left[ h \binom{x}{a} \right]. \]
+Sean $x_1, \dots, x_m$ las variables libres de $\forall x \psi$.
+Por hip\'otesis, existe un automorfismo $\tau$ de $\mathfrak{A}$ tal que 
+\[ \tau (h(x_i)) = h(x_i) \quad \text{y} \quad \tau (a) \in |\mathfrak{B}|. \]
+Del teorema 2.2.2 llegamos a 
+\[ \mathfrak{A} \not\models \psi \left[ \tau \circ \left( h \binom{x}{a} \right) \right]. \]
+Como $\tau \circ h$ y $h$ coinciden en sus variables libres, tenemos que 
+\[ \mathfrak{A} \not\models \psi \left[ h \binom{x}{\tau(a)} \right]. \]
+Por la hip\'otesis de inducci\'on obtenemos que 
+\[ \mathfrak{B} \not\models \psi \left[ h \binom{x}{\tau(a)} \right]. \]
+De lo cual concluimos que 
+\[ \mathfrak{B} \not\models \forall x \psi [h]. \] \qed
+
+Nos percatamos que solo se us\'o la hip\'otesis del automorfismo en la demostraci\'on de
+\[ \mathfrak{B} \models \forall x \psi [h] \Longrightarrow \mathfrak{A} \models \forall x \psi [h]. \]
+De resto se usa la propiedad de subconjunto y de la existencia de un encaje.
+Por lo tanto para construir una subestructura elemental solo nos debemos enfocar en cumplir
+\[ \mathfrak{B} \models \forall x \psi [h] \Longrightarrow \mathfrak{A} \models \forall x \psi [h]. \]
+o de forma equivalente 
+\[ \mathfrak{A} \models \exists x \psi [h] \Longrightarrow \mathfrak{B} \models \exists x \psi [h]. \]
+\begin{definition}
+  Sean $\mathfrak{A}$ y $\mathfrak{B}$ $\lang$-estructuras.
+  Si hay un encaje $\tau : \mathfrak{A} \to \mathfrak{B}$ se dice que es elemental si para toda $\lang$-f\'ormula $\varphi$ y asignaci\'on $h$ sobre $\mathfrak{A}$ se cumple
+  \[ \mathfrak{A} \models \varphi [h] \iff \mathfrak{B} \models \varphi [\tau \circ h]. \]
+  Notamos que tener un encaje elemental implica equivalencia elemental. 
+  \footnote{Esto es equivalente a que es isomorfa a una subestructura elemental.}
+\end{definition}
+\newpage
+\begin{theorem}
+  Sea $\mathfrak{A}$ una $\lang$-estructura con cardinal infinito y $B_0$ un subconjunto de $|\mathfrak{A}|$. 
+  Existe una subestructura elemental $\mathfrak{B}$ de $\mathfrak{A}$ tal que $B_0 \subseteq |\mathfrak{B}|$ y $\mathrm{card} (|\mathfrak{B}|) \leq \max \{ \kappa_\lang, \mathrm{card} (B_0) \}$.
+\end{theorem} \hfill \break
+\emph{Demostraci\'on.} \hfill \break
+Fijamos $d_0 \in |\mathfrak{A}|$.
+Luego, para toda $\lang$-f\'ormula $\varphi$ de la forma $\exists x \psi$ definimos $n_{\varphi}$ como
+\[
+  n_\varphi :=
+  \begin{cases}
+    \max \{ i \in \nn \ | \ v_i \in \mathrm{Fr} (\varphi) \} &\text{ si } \mathrm{Fr} (\varphi) \neq \void,\\
+    -1 &\text{ si } \mathrm{Fr} (\varphi) = \void.
+  \end{cases}
+\]
+Luego, definimos a $g_\varphi : |\mathfrak{A}|^{n_\varphi + 1} \to |\mathfrak{A}|$ de la siguiente forma.
+Sean $a_0, \dots, a_{n_\varphi} \in |\mathfrak{A}|$, 
+\[ g_\varphi (a_0, \dots, a_{n_\varphi}) = a, \]
+cuando existe una asignaci\'on $h$ sobre $\mathfrak{A}$ tal que para todo $i \in \{ 0, \dots, n_\varphi \}$ se cumple que $h(v_i) = a_i$ y $\mathfrak{A} \models \psi \left[ h \binom{x}{a} \right]$.
+\footnote{Esto lo entiendo como: \emph{Si $a_0, \dots, a_{n_\varphi}$ satisfacen $\varphi$ entonces elegimos (del usar axioma de elecci\'on) un ejemplo de $\psi$.}}
+Luego $g(a_0, \dots, a_{n_\varphi}) = d_0$ de lo contrario.
+Mientras que consideramos $D^0 = \{ \void \}$, de esta forma la funci\'on puede verse como un elemento.
+
+Definimos a $(B_n)_{n \in \nn}$ como
+\[ B_{n+1} := B_n \cup \bigcup_{\varphi} g_\varphi \left(B_n^{n_\varphi + 1} \right). \]
+y
+\[ B := \bigcup_{n \in \nn} B_n. \]
+Debemos demostrar que este conjunto es el universo de una subestructura $\mathfrak{B}$ de $\mathfrak{A}$.
+
+Sea $c$ una constante en $\lang$. 
+Definimos a la f\'ormula $\varphi := \exists v_0 (v_0 \doteq c)$.
+Luego, tenemos que $\mathfrak{A} \models v_0 \doteq c \left[ h \binom{v_0}{c^{\mathfrak{A}}} \right]$ para toda asignaci\'on $h$ en $\mathfrak{A}$.
+Por lo tanto $g_{\varphi} = c^{\mathfrak{A}} \in B$.
+
+Sea $f$ una funci\'on $n$-aria y $b_1, \dots, b_n \in B$, definimos a la f\'ormula $\exists v_{n+1} (v_{n+1} \doteq f(v_1, \dots, v_n))$.
+Notamos que para toda asignaci\'on $h$,
+\[ \mathfrak{A} \models \exists v_{n+1} (v_{n+1} \doteq f(v_1, \dots, v_n)). \]
+Por lo tanto, sea $h'$ una asignaci\'on tal que $h(v_i) = b_{i-1}$, llegamos a que 
+\[  f^{\mathfrak{A}} (b_1, \dots, b_n) = g_\varphi (b_1, \dots, b_n) \in B. \]
+De esto llegamos a que $B$ es el universo de una subestructura $\mathfrak{B} \subseteq \mathfrak{A}$.
+Prosigamos con la demostraci\'on como en el lema anterior a excepci\'on de la \'ultima implicaci\'on.
+Sea $\varphi := \forall x \psi$ y $h$ una asignaci\'on sobre $\mathfrak{B}$ tal que $\mathfrak{A} \not\models \varphi [h]$, es decir, existe $a \in |\mathfrak{A}|$ tal que $\mathfrak{A} \models \neg \varphi \left[ h \binom{x}{a} \right]$.
+De esto se sigue que 
+\[ a = g_\varphi (h(v_0), \dots, h(n_{\varphi})) \in B. \]
+De lo cual obtenemos que $\mathfrak{B} \not\models \varphi [h]$, lo cual concluye la demostraci\'on de que $\mathfrak{B}$ es una subestructura elemental.
+\newpage
+Resta demostrar la desigualdad de su cardinal.
+Notamos que $\mathrm{card} (B_0) \leq \max \{ \kappa_\lang, \mathrm{card} (B_0) \}$.
+Usando inducci\'on, supongamos que $\mathrm{card} (B_m) \leq \max \{ \kappa_\lang, \mathrm{card} (B_0) \}$.
+De esto se sigue que para toda f\'ormula $\varphi = \exists x \psi$,
+\[ \mathrm{card} (g_{\varphi} (B_m)) \leq \max \{ \kappa_\lang, \mathrm{card} (B_0) \}.  \]
+Por lo tanto
+\[ \mathrm{card} \left( \bigcup_{\varphi} (B_m^{n_\varphi + 1}) \right) \leq \kappa_\lang \max \{ \kappa_\lang, \mathrm{card} (B_0) \} \leq \max \{ \kappa_\lang, \mathrm{card} (B_0) \}. \]
+De lo anterior obtenemos 
+\[ \mathrm{card} \left( B_m \cup \bigcup_{\varphi} g_{\varphi} (B_m^{n_\varphi + 1}) \right) \leq \max \{ \kappa_\lang, \mathrm{card} (B_0) \}. \]
+Concluyendo 
+\[ \mathrm{card} (B) \leq \aleph_0 \cdot \max \{ \kappa_\lang, \mathrm{card} (B_0) \} = \max \{ \kappa_\lang, \mathrm{card} (B_0) \}.  \]
+
+Si $\kappa_\lang \leq \mathrm{card}{B_0}$, se sigue que $\mathrm{card} (B) = \mathrm{card} (B_0)$. \qed
+\begin{corollary}
+  Sean $\lang$ un lenguaje numerable y $\mathfrak{A}$ una $\lang$-estructura.
+  Existe una subestructura elemental $\mathfrak{B} \preceq \mathfrak{A}$ tal que $|\mathfrak{B}| = \aleph_0$. 
+\end{corollary} \hfill \break
+\emph{Demostraci\'on.} \hfill \break
+Del teorema anterior, tomamos $B_0 = \void$.
+Tenemos una subestructura elemental $\mathfrak{B} \preceq \mathfrak{A}$ tal que $\mathrm{card} (|\mathfrak{B}|) \leq \max \{ \aleph_0, 0 \} = \aleph_0$.\\
+Luego, $\mathfrak{B}$ no puede ser finito ya que esto implicar\'ia que $\mathfrak{A}$ es finito. \qed
+
